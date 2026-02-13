@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>YIMRUN BKK — Bangkok Run Club</title>
+  <meta name="description" content="Bangkok-based run club with free daily group runs and coached endurance training: base, tempo, intervals, long run support, drills & dynamic warmup, beginner plans." />
+  <style>
+    :root{
+      --bg:#F8FAFC;
+      --card:#FFFFFF;
+      --ink:#0B1220;
+      --muted:#334155;
+      --line: rgba(15, 23, 42, .10);
+      --a:#7C3AED;
+      --b:#06B6D4;
+      --shadow: 0 18px 50px rgba(2, 6, 23, .10);
+      --radius: 22px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 18px;}
+    .nav{
+      position: sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(248,250,252,.75);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{display:flex; align-items:center; gap:12px;}
+    .brand-mark{
+  width:38px;
+  height:38px;
+  border-radius: 14px;
+  object-fit: contain;
+  box-shadow: 0 12px 30px rgba(124,58,237,.25);
+}
+    .brand-mark:before{
+      content:"";
+      position:absolute; inset:10px;
+      border: 3px solid rgba(255,255,255,.85);
+      border-left-color: transparent;
+      border-bottom-color: transparent;
+      border-radius: 999px;
+      transform: rotate(20deg);
+    }
+    .brand-name{font-weight:900; letter-spacing:.12em; font-size:14px}
+    .brand-sub{font-size:12px; color:var(--muted); letter-spacing:.14em}
+    .links{display:flex; gap: 16px; flex-wrap:wrap; justify-content:flex-end}
+    .links a{font-size:13px; color:var(--muted)}
+    .links a:hover{color:var(--ink)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 11px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: white;
+      font-weight: 700;
+      font-size: 13px;
+      cursor:pointer;
+    }
+    .btn.primary{
+      border: none;
+      color: white;
+      background: linear-gradient(135deg, var(--a), var(--b));
+      box-shadow: 0 14px 40px rgba(6,182,212,.18);
+    }
+    .hero{padding: 46px 0 26px;}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 900px){
+      .hero-grid{grid-template-columns: 1fr}
+      .links{display:none}
+    }
+    .panel{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      overflow:hidden;
+      position:relative;
+    }
+    .glow{
+      position:absolute; width:420px; height:420px; right:-220px; top:-220px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,58,237,.35), transparent 55%),
+                  radial-gradient(circle at 60% 60%, rgba(6,182,212,.25), transparent 55%);
+      filter: blur(2px);
+      pointer-events:none;
+    }
+    h1{
+      margin: 0 0 10px;
+      font-size: 44px;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+    .lead{color: var(--muted); font-size: 16px; max-width: 62ch}
+    .pill-row{display:flex; gap:10px; flex-wrap:wrap; margin-top: 16px}
+    .pill{
+      padding: 9px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(248,250,252,.6);
+      font-size: 13px;
+      color: var(--muted);
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+    }
+    .dot{
+      width:8px; height:8px; border-radius:999px;
+      background: linear-gradient(135deg, var(--a), var(--b));
+    }
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top: 18px}
+    .mini{display:grid; gap: 12px;}
+    .mini .box{
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      padding: 14px;
+      background: linear-gradient(180deg, #fff, rgba(248,250,252,.65));
+    }
+    .k{font-weight:900; letter-spacing:.08em; font-size:12px; color: var(--muted)}
+    .v{font-weight:900; font-size: 22px; margin-top: 6px}
+    .small{color: var(--muted); font-size: 13px; margin-top: 4px}
+    section{padding: 18px 0}
+    .section-title{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+      margin: 16px 0 10px;
+    }
+    h2{margin:0; font-size: 22px; letter-spacing:-.02em}
+    .hint{color: var(--muted); font-size: 13px}
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 900px){
+      .grid{grid-template-columns: 1fr}
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 16px;
+    }
+    .badge{
+      display:inline-flex; align-items:center; gap:8px;
+      font-size: 12px; font-weight: 800;
+      color: var(--ink);
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(248,250,252,.7);
+    }
+    .pill-level{
+      display:inline-flex;
+      margin-left: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.8);
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--muted);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .card h3{margin: 10px 0 6px; font-size: 16px}
+    .card p{margin:0; color: var(--muted); font-size: 13px}
+    .row{display:flex; justify-content:space-between; gap:10px; margin-top: 12px; flex-wrap:wrap}
+    .price{font-weight: 900}
+    .schedule{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    @media (max-width: 900px){
+      .schedule{grid-template-columns: 1fr}
+    }
+    table{
+      width:100%;
+      border-collapse: collapse;
+      overflow:hidden;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background:white;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom: 1px solid var(--line);
+      text-align:left;
+      font-size: 13px;
+      vertical-align: top;
+    }
+    th{color: var(--muted); font-weight: 900; letter-spacing:.08em; font-size: 11px; text-transform:uppercase}
+    tr:last-child td{border-bottom:none}
+    .footer{
+      padding: 30px 0 50px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .clickable{
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .clickable:hover{opacity:.85}
+    .note{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .callout{
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(248,250,252,.7);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .callout b{color: var(--ink)}
+    .copy{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      margin-top: 10px;
+      flex-wrap:wrap;
+    }
+    .copy input{
+      width: min(520px, 100%);
+      padding: 12px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background:white;
+      font: inherit;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="Go to top">
+          <img 
+  src="yimrun-bkk-brandmark.svg" 
+  alt="YIMRUN BKK" 
+  class="brand-mark"
+/>
+          <div>
+            <div class="brand-name">YIMRUN BKK</div>
+            <div class="brand-sub">Bangkok Run Club</div>
+          </div>
+        </a>
+
+        <div class="links" aria-label="Site navigation">
+          <a href="#classes">Classes</a>
+          <a href="#schedule">Schedule</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#location">Location</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <!-- Replace with your Square Booking link -->
+        <a class="btn primary" href="#schedule">Book</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="panel">
+          <div class="glow" aria-hidden="true"></div>
+          <h1>Run together.<br/>Train for endurance.</h1>
+          <p class="lead">
+            Bangkok-based run club with <b>free daily group runs</b> and <b>coach-led endurance training</b>:
+            aerobic base, tempo, intervals, long-run support, plus drills and dynamic warmup.
+          </p>
+
+          <div class="pill-row">
+            <div class="pill"><span class="dot"></span> Free Group Run • Daily 6:00 AM</div>
+            <div class="pill"><span class="dot"></span> Benjakitti Park • Bangkok</div>
+            <div class="pill"><span class="dot"></span> Coaching • Form • Pacing • Stamina</div>
+          </div>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#schedule">See schedule</a>
+            <a class="btn" href="#schedule">Book a class</a>
+          </div>
+
+          <div class="note">
+            Paid classes are <b>60 minutes</b> and all priced the same: <b>฿2,300</b>.
+          </div>
+
+          <div class="callout">
+            <b>Meeting point (Grab):</b> Benjakitti Park — <b>Ratchadaphisek Rd Exit</b><br/>
+            Use this pickup note so your driver finds you easily.
+            <div class="copy" aria-label="Copyable pickup text">
+              <input id="grabNote" value="Benjakitti Park (Ratchadaphisek Rd Exit) — meeting point for YIMRUN BKK 6:00 AM run." readonly />
+              <button class="btn" id="copyGrab">Copy</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel mini" aria-label="Quick info">
+          <div class="box">
+            <div class="k">Free daily run</div>
+            <div class="v">6:00 AM</div>
+            <div class="small">Easy pace + community. All levels welcome.</div>
+          </div>
+          <div class="box">
+            <div class="k">Coached classes</div>
+            <div class="v">฿2,300</div>
+            <div class="small">60 minutes. Endurance-focused + feedback.</div>
+          </div>
+          <div class="box">
+            <div class="k">Meet point (Grab)</div>
+            <div class="v">Ratchadaphisek Rd Exit</div>
+            <div class="small">Benjakitti Park. Easy to find.</div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- CLASSES -->
+  <section id="classes">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Classes</h2>
+        <div class="hint">Each class shows a suggested level — coaches adjust to you.</div>
+      </div>
+
+      <div class="grid" id="classCards"></div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Schedule</h2>
+        <div class="hint">Links are clickable — replace with your Square booking URLs later.</div>
+      </div>
+
+      <div class="schedule">
+        <div class="card">
+          <span class="badge">Daily</span>
+          <h3>
+            <a class="clickable" href="#schedule">Free Group Run • 6:00 AM</a>
+            <span class="pill-level">All levels</span>
+          </h3>
+          <p>Warm up, easy run, cool down. Beginner-friendly. Nobody gets left behind.</p>
+          <div class="row">
+            <div><b>Where:</b> Benjakitti Park (Ratchadaphisek Rd Exit)</div>
+            <div><b>Price:</b> ฿0</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Sample week</span>
+          <h3>Coach-led classes (all ฿2,300)</h3>
+
+          <table aria-label="Sample training week">
+            <thead>
+              <tr><th>Day</th><th>Session</th><th>Best for</th><th>Price</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mon</td>
+                <td><a class="clickable" href="#schedule">Aerobic Base Builder</a></td>
+                <td>Beginner → Intermediate</td>
+                <td>฿2,300</td>
+              </tr>
+              <tr>
+                <td>Tue</td>
+                <td><a class="clickable" href="#schedule">Drills & Dynamic Warmup</a></td>
+                <td>All levels (perfect add-on)</td>
+                <td>฿2,300</td>
+              </tr>
+              <tr>
+                <td>Wed</td>
+                <td><a class="clickable" href="#schedule">Tempo & Threshold</a></td>
+                <td>Intermediate+</td>
+                <td>฿2,300</td>
+              </tr>
+              <tr>
+                <td>Fri</td>
+                <td><a class="clickable" href="#schedule">Intervals (5K–10K)</a></td>
+                <td>Intermediate+ (scaled options)</td>
+                <td>฿2,300</td>
+              </tr>
+              <tr>
+                <td>Sat</td>
+                <td><a class="clickable" href="#schedule">Long Run Support</a></td>
+                <td>Beginner → Advanced</td>
+                <td>฿2,300</td>
+              </tr>
+              <tr>
+                <td>Sun</td>
+                <td><a class="clickable" href="#schedule">Beginner Endurance</a></td>
+                <td>Beginner / returning runners</td>
+                <td>฿2,300</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="note">
+            Tip: swap each session link above with a Square booking link (one link per class).
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Pricing</h2>
+        <div class="hint">Thai Baht only. Simple pricing.</div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <span class="badge">Free</span>
+          <h3>Daily Group Run <span class="pill-level">All levels</span></h3>
+          <p>Every day at 6:00 AM. Community-first, all paces.</p>
+          <div class="row">
+            <div class="price">฿0</div>
+            <a class="btn" href="#schedule">See schedule</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Standard</span>
+          <h3>Coach-led Class <span class="pill-level">By level</span></h3>
+          <p>60 minutes. Endurance-focused sessions with coaching cues and feedback.</p>
+          <div class="row">
+            <div class="price">฿2,300 / class</div>
+            <a class="btn primary" href="#schedule">Book</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <span class="badge">Included</span>
+          <h3>What you get <span class="pill-level">Every class</span></h3>
+          <p>Warm-up → main set → cooldown, plus pacing/form guidance and clear next steps.</p>
+          <div class="row" style="align-items:flex-start">
+            <div>
+              <div><b>Duration:</b> 60 minutes</div>
+              <div><b>Price:</b> ฿2,300</div>
+              <div class="small">Coaches adjust intensity for your level.</div>
+            </div>
+            <a class="btn" href="#classes">View classes</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="location">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>Location</h2>
+        <div class="hint">Meeting point for runners + Grab pickup note</div>
+      </div>
+
+      <div class="panel">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:14px;">
+          <div class="card" style="margin:0;">
+            <h3>Benjakitti Park • Ratchadaphisek Rd Exit</h3>
+            <p>
+              Meet at <b>Benjakitti Park (Ratchadaphisek Rd Exit)</b>.
+              If you book a Grab taxi, use this as your pickup note:
+            </p>
+            <div class="copy">
+              <input value="Benjakitti Park (Ratchadaphisek Rd Exit) — meeting point for YIMRUN BKK." readonly />
+              <button class="btn" id="copyGrab2">Copy</button>
+            </div>
+            <div class="note">You can add a Google Maps embed / exact pin later.</div>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <h3>Training focus</h3>
+            <p>Aerobic base • drills & dynamic warmup • tempo • intervals • long-run endurance • beginner progression</p>
+            <div class="row">
+              <a class="btn primary" href="#schedule">See schedule</a>
+              <a class="btn" href="#classes">Choose a class</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-title">
+        <h2>FAQ</h2>
+        <div class="hint">Quick answers for new runners.</div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Which class should I start with?</h3>
+          <p>If you’re new: <b>Beginner Endurance</b> or the <b>Free Group Run</b>. If you already run: <b>Aerobic Base</b> + <b>Drills & Dynamic Warmup</b>.</p>
+        </div>
+        <div class="card">
+          <h3>What’s in “Drills & Dynamic Warmup”?</h3>
+          <p>Mobility + activation + running drills (form, cadence, coordination). Great before speed/tempo days.</p>
+        </div>
+        <div class="card">
+          <h3>Do I need to book the free run?</h3>
+          <p>No booking needed for the free 6:00 AM group run—just show up at the meeting point.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap" style="display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+      <div>© <span id="year"></span> YIMRUN BKK • Bangkok Run Club</div>
+      <div>
+        <a href="#schedule" class="hint">Schedule</a> •
+        <a href="#top" class="hint">Back to top</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const PAID_PRICE_THB = "฿2,300";
+
+    const classes = [
+      {
+        tag: "Endurance",
+        title: "Aerobic Base Builder",
+        level: "Beginner → Intermediate",
+        desc: "Easy endurance session to build stamina safely. Perfect for consistency and injury prevention.",
+        price: PAID_PRICE_THB,
+        duration: "60 min"
+      },
+      {
+        tag: "Technique",
+        title: "Drills & Dynamic Warmup",
+        level: "All levels",
+        desc: "Mobility + activation + running drills (form, cadence, coordination). Great before harder workouts.",
+        price: PAID_PRICE_THB,
+        duration: "60 min"
+      },
+      {
+        tag: "Threshold",
+        title: "Tempo & Threshold",
+        level: "Intermediate+",
+        desc: "Learn to hold a strong, sustainable pace. Great for 10K performance and overall endurance.",
+        price: PAID_PRICE_THB,
+        duration: "60 min"
+      },
+      {
+        tag: "Speed Endurance",
+        title: "Intervals (5K–10K)",
+        level: "Intermediate+ (scaled)",
+        desc: "Structured reps with smart recovery. Improve speed while staying controlled (no burnout).",
+        price: PAID_PRICE_THB,
+        duration: "60 min"
+      },
+      {
+        tag: "Stamina",
+        title: "Long Run Support",
+        level: "Beginner → Advanced",
+        desc: "Guided long-run style workout with pacing strategy, fueling tips, and form check-ins.",
+        price: PAID_PRICE_THB,
+        duration: "60 min"
+      },
+      {
+        tag: "Beginner",
+        title: "Beginner Endurance",
+        level: "Beginner / returning",
+        desc: "Run/walk options, pacing basics, and confidence-building progressions in a supportive setting.",
+        price: PAID_PRICE_THB,
+        duration: "60 min"
+      }
+    ];
+
+    const cards = document.getElementById("classCards");
+    cards.innerHTML = classes.map(c => `
+      <div class="card">
+        <span class="badge"><span class="dot"></span>${c.tag}</span>
+        <span class="pill-level">${c.level}</span>
+        <h3>${c.title}</h3>
+        <p>${c.desc}</p>
+        <div class="row">
+          <div>
+            <div class="price">${c.price}</div>
+            <div class="small">${c.duration}</div>
+          </div>
+          <!-- Replace this with your Square booking link later -->
+          <a class="btn primary" href="#schedule">Book</a>
+        </div>
+      </div>
+    `).join("");
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function copyText(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      navigator.clipboard.writeText(el.value).then(() => alert("Copied! Paste into Grab pickup note."));
+    }
+
+    const grabNote = document.getElementById("grabNote");
+    const copyGrab = document.getElementById("copyGrab");
+    if(copyGrab && grabNote){
+      copyGrab.addEventListener("click", () => copyText("grabNote"));
+    }
+
+    const copyGrab2 = document.getElementById("copyGrab2");
+    if(copyGrab2){
+      copyGrab2.addEventListener("click", () => {
+        const inputs = document.querySelectorAll('#location input');
+        if(inputs && inputs[0]) navigator.clipboard.writeText(inputs[0].value).then(() => alert("Copied!"));
+      });
+    }
+  </script>
+</body>
+</html>

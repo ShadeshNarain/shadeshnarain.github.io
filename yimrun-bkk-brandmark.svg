@@ -1,0 +1,23 @@
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none"
+xmlns="http://www.w3.org/2000/svg" role="img" aria-label="YIMRUN BKK brand mark">
+  <defs>
+    <linearGradient id="g" x1="40" y1="40" x2="216" y2="216" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded background -->
+  <rect x="16" y="16" width="224" height="224" rx="64" fill="url(#g)"/>
+
+  <!-- Route loop -->
+  <path d="M128 56
+           C92 56 64 84 64 120
+           C64 150 88 170 120 176
+           C160 184 184 196 184 220"
+        stroke="white" stroke-width="14" stroke-linecap="round"/>
+
+  <!-- Start / End dots -->
+  <circle cx="128" cy="56" r="10" fill="#0B1220"/>
+  <circle cx="184" cy="220" r="10" fill="#0B1220"/>
+</svg>
